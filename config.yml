@@ -1,0 +1,52 @@
+---
+- hosts: all
+  become: true
+  tasks:
+
+   - name: install pip for CentOS
+     dnf:
+      name:
+        - python3-pip
+      state: latest
+      update_cache: yes
+     when: ansible_distribution == "CentOS"
+
+   - name: install Pip For Ubuntu
+     apt:
+      name:
+        - python3-pip
+      state: latest
+      update_cache: yes
+     when: ansible_distribution == "Ubuntu"
+
+   - name: install Python for CentOS
+     dnf:
+      name:
+        - python3
+      state: latest
+      update_cache: yes
+     when: ansible_distribution == "CentOS"
+
+   - name: install Python For Ubuntu
+     apt:
+      name:
+        - python3
+      state: latest
+      update_cache: yes
+     when: ansible_distribution == "Ubuntu"
+
+   - name: install OpenJDK for CentOS
+     dnf:
+      name:
+        - java-1.8.0-openjdk
+      state: latest
+      update_cache: yes
+     when: ansible_distribution == "CentOS"
+
+   - name: install OpenJDK For Ubuntu
+     apt:
+      name:
+        - openjdk-11-jre
+      state: latest
+      update_cache: yes
+     when: ansible_distribution == "Ubuntu"
